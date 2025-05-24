@@ -6,15 +6,19 @@ const carSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  name:{
+    type: String,
+    required: true,
+  },
   type:{
     type: String,
     required: true,
     },
-  model: {
+  brand: {
     type: String,
     required: true,
   },
-  pricePerDaY: {
+  pricePerDay: {
     type: Number,
     required: true,
   },

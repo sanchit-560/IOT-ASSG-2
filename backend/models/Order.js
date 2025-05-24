@@ -27,7 +27,6 @@ const ordersSchema = new mongoose.Schema({
     },
     totalPrice: {
         type: Number,
-        required: true,
     },
     status:{
         type:String,
@@ -37,3 +36,4 @@ const ordersSchema = new mongoose.Schema({
 })
 
 const Order  = mongoose.model('Order',ordersSchema)
+export default Order
