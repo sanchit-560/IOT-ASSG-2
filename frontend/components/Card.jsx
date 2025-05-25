@@ -2,7 +2,7 @@ export const Card = ({ car }) => {
     return (
         <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center transition-transform hover:scale-105">
             <img
-                src={car.image}
+                src={car.Image}
                 alt={car.name}
                 className="w-40 h-28 object-cover rounded-md mb-4"
             />

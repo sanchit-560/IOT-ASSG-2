@@ -23,7 +23,7 @@ export const SearchBar = ({onSearch,onSubmit,clearSuggestions})=>{
     else{
       clearSuggestions();
     }
-    return () => debouncedSearch.cancel;
+    return () => debouncedSearch.cancel();
   }, [query, brand, type,debouncedSearch,clearSuggestions]);
 
   const handleSubmit = (e) => {

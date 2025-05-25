@@ -58,7 +58,7 @@ export const Homepage = () => {
         <div className="absolute z-10 bg-white border rounded w-full max-h-60 overflow-y-auto shadow">
           {suggestions.map((car) => (
             <div key={car.vin} className="p-2 hover:bg-gray-100 cursor-pointer" onClick={()=>{setCars([car]);setSuggestions([])}}>
-               {car.brand} {car.model} - ${car.dailyPrice}/day
+              {car.name} - ${car.pricePerDay}/day
             </div>
           ))}
         </div>
