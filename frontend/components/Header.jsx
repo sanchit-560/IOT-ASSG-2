@@ -6,11 +6,11 @@ export const Header = () => {
        <div>
     <img className='h-16 w-16 rounded full' src={logo} alt="Website Logo"/>
        </div>
-      <h1>Car Rental</h1>
+      <h1 className='text-center text-3xl font-bold'>Rental Central </h1>
       <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/cars">Reservation</a></li>
+        <ul className='flex flex-row'>
+          <li className='px-4'><a href="/">Home</a></li>
+          <li className='px-4'><a href="/cars">Reservation</a></li>
         </ul>
       </nav>
     </div>

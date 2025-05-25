@@ -1,7 +1,7 @@
 import Car from "../models/Cars.js";
 // created a filter for the cars to retrieve results based on the type, brand and search
 export const getAllCars = async(req,res)=>{
-    const {type,brand,search} = req.query;;
+    const {type,brand,search} = req.query;
     const filter = {
       ...(type && { type }),
       ...(brand && { brand }),
