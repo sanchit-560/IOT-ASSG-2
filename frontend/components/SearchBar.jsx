@@ -5,6 +5,7 @@ export const SearchBar = ({onSearch,onSubmit,clearSuggestions})=>{
     const [query, setQuery] = useState("");
     const [brand, setBrand] = useState("");
     const [type, setType] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
 
 
    // Debounced Search function
@@ -20,11 +21,11 @@ export const SearchBar = ({onSearch,onSubmit,clearSuggestions})=>{
     if(query.trim()!==""){
       debouncedSearch(query, brand, type);
     }
-    else{
+    else if(suggestions.length > 0){
       clearSuggestions();
     }
     return () => debouncedSearch.cancel();
-  }, [query, brand, type,debouncedSearch,clearSuggestions]);
+  }, [query, brand, type, debouncedSearch, clearSuggestions, suggestions.length]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

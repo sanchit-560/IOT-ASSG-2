@@ -1,4 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 export const Card = ({ car }) => {
+    const navigate = useNavigate();
+
+    const handleRentClick = (e) => {
+        e.preventDefault();
+        console.log('Navigating to booking page...');
+        navigate('/bookingPage', { replace: true });
+    };
+
     return (
         <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center transition-transform hover:scale-105">
             <img
@@ -13,11 +23,14 @@ export const Card = ({ car }) => {
             <p className="text-blue-700 mb-4">Mileage: {car.mileage} km</p>
             <p className="text-blue-700 mb-4">Available: {car.isAvailable ? "Yes" : "No"}</p>
             {car.isAvailable ? (
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                <button 
+                    onClick={handleRentClick}
+                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors w-full"
+                >
                     Rent Now
                 </button>
             ) : (
-                <button className="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed">
+                <button className="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed w-full">
                     Not Available
                 </button>
             )}
