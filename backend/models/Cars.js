@@ -38,5 +38,5 @@ const carSchema = new mongoose.Schema({
     default: true,
   },
 });
-const Car = mongoose.model("Car", carSchema);
+const Car = mongoose.model("Car", carSchema,"Cars");
 export default Car;

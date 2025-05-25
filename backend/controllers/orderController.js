@@ -1,5 +1,5 @@
-import Order from "../models/Order";
-import Car from "../models/Cars";
+import Order from "../models/Order.js";
+import Car from "../models/Cars.js";
 
 // Create Orders
 export const createOrder = async(req,res)=>{

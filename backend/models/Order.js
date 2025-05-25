@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const ordersSchema = new mongoose.Schema({
     vin:{
-        typeof: String,
+        type: String,
         required: true,
         unique: true,
     },

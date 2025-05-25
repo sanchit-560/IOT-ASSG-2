@@ -1,9 +1,9 @@
+import { Homepage } from "../pages/homepage"
 
 function App() {
-
   return (
     <>
-    <div>Hello</div> 
+    <Homepage></Homepage>
     </>
   )
 }

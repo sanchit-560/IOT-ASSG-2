@@ -1,12 +1,17 @@
-import Car from "../models/Cars";
+import Car from "../models/Cars.js";
 // created a filter for the cars to retrieve results based on the type, brand and search
 export const getAllCars = async(req,res)=>{
-    const {type,brand,search} = res.query;;
+    const {type,brand,search} = req.query;;
     const filter = {
       ...(type && { type }),
       ...(brand && { brand }),
       ...(search && {
-        $or: [{ vin: { $regex: search, $options: "i" } }],
+        $or: [
+           { name: { $regex: search, $options: "i" } },
+           { brand: { $regex: search, $options: "i" } },
+           { type: { $regex: search, $options: "i" } },
+           { color: { $regex: search, $options: "i" } }
+        ],
       }),
     };
 
