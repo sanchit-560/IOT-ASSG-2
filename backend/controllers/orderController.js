@@ -29,10 +29,10 @@ export const createOrder = async(req,res)=>{
 }
 
 // Method to confirm the order
-export const confirmOrder  =  async(req,res)=>{
-    const {id} = req.params
+export const confirmOrder = async(req,res)=>{
+    const {_id} = req.params
     try {
-        const order = await Order.findById(id);
+        const order = await Order.findById(_id);
         if(!order){
             return res.status(404).json({
                 message:"Order not found"
@@ -40,13 +40,18 @@ export const confirmOrder  =  async(req,res)=>{
         }
         order.status = "Completed";
         await order.save();
-        await Car.findByIdAndUpdate(order.vin,{
-            isAvailable: false
-        })
+        
+        // change the availability of car once the order is completed
+        const car = await Car.findOne({ vin: order.vin });
+        if (car) {
+            car.isAvailable = false;
+            await car.save();
+        }
         res.status(200).json({
             message:"Order Confirmed"
         })
     } catch (err) {
+        console.error('Error in confirmOrder:', err);
         res.status(500).json({
             message: err.message
         })

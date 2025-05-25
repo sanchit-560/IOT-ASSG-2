@@ -10,6 +10,8 @@ export const Homepage = () => {
  const [cars,setCars] = useState([]);
  const [suggestions, setSuggestions] = useState([]);
 
+
+
  const searchHandler = async ({search,brand,type})=>{
      try {
       const response = await api.get('/cars',{

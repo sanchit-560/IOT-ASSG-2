@@ -3,7 +3,6 @@ const ordersSchema = new mongoose.Schema({
     vin:{
         type: String,
         required: true,
-        unique: true,
     },
     customerName: {
         type: String,
@@ -35,5 +34,7 @@ const ordersSchema = new mongoose.Schema({
     }
 })
 
-const Order  = mongoose.model('Order',ordersSchema)
-export default Order
+ordersSchema.index({ vin: 1, status: 1 });
+
+const Order = mongoose.model('Order', ordersSchema);
+export default Order;

@@ -5,6 +5,7 @@ export const Card = ({ car }) => {
 
     const handleRentClick = (e) => {
         e.preventDefault();
+        localStorage.setItem('lastSelectedCar', JSON.stringify(car));
         console.log('Navigating to booking page...');
         navigate('/bookingPage', { replace: true });
     };
