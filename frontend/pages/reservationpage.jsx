@@ -152,7 +152,7 @@ export const ReservationPage = () => {
         const {name,value} = e.target;
         setForm({...form,[name]:value});
     }
-
+    
     const handleBlur = (e) => {
         const {name} = e.target;
         setFieldUsed({...fieldUsed,[name]:true});
@@ -167,7 +167,8 @@ export const ReservationPage = () => {
             startDate: true,
             totalDays: true
         });
-        
+
+        // checking for errors here
         const validationErrors = validateForm(form);
         if(Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
@@ -176,8 +177,9 @@ export const ReservationPage = () => {
 
         setIsSubmitting(true);
         try {
-            
+            // api call to check the availability of car again before booking
             const availabilityOFCar = await api.get(`/cars/${lastSelectedCar.vin}/availability`);
+            // if not available then show Fail message
             if(!availabilityOFCar.data.isAvailable){
                 setOrderStatus("Fail")
                 const updatedCar = {...lastSelectedCar,isAvailable:false}
@@ -187,7 +189,7 @@ export const ReservationPage = () => {
                 alert('The car is no longer available')
                 return
             }
-
+           // else logic to proceed booking and call post and  put endpoint to create and update order
             const orderData = {
                 vin: lastSelectedCar.vin,
                 customerName: form.customerName,
@@ -246,7 +248,7 @@ export const ReservationPage = () => {
         localStorage.removeItem("reservationForm");
          navigate("/");
     }
-
+  // form
     return (
         <div className="p-5 max-w-2xl mt-32 mx-auto">
             <Header />

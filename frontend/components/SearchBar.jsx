@@ -1,5 +1,5 @@
 import { useState,useEffect,useCallback } from "react"
-import debounce from "lodash.debounce"; // using this package to introduce debounce functionality, which will limit the api calls
+import debounce from "lodash.debounce"; // using this package to introduce debounce functionality, which will limit get endpoint api calls
 
 export const SearchBar = ({onSearch,onSubmit,clearSuggestions})=>{
     const [query, setQuery] = useState("");
