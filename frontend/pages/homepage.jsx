@@ -59,7 +59,7 @@ export const Homepage = () => {
       {/* Displaying Suggestions */}
       {suggestions.length>0 && (
         <div className="absolute z-10 bg-white border rounded w-full max-h-60 overflow-y-auto shadow">
-          {suggestions.map((car) => (
+          {suggestions.slice(0,3).map((car) => (
             <div key={car.vin} className="p-2 hover:bg-gray-100 cursor-pointer" onClick={()=>{setCars([car]);setSuggestions([])}}>
               {car.name} - ${car.pricePerDay}/day
             </div>
