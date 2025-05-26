@@ -10,7 +10,8 @@ export const Homepage = () => {
  const [cars,setCars] = useState([]);
  const [suggestions, setSuggestions] = useState([]);
 
-
+ 
+ // function handling suggestions
 
  const searchHandler = async ({search,brand,type})=>{
      try {
@@ -28,7 +29,7 @@ export const Homepage = () => {
       console.error("Error searching cars:", error);
      }
  }
-
+// function for handling search with the filter, uses the sam logic as above 
  const submitHandler = async ({search,brand,type})=>{
      try {
       const response = await api.get('/cars',{
@@ -66,8 +67,8 @@ export const Homepage = () => {
         </div>
       )}
       <div className="container mx-auto my-8">
-      <h1 className="text-center text-3xl font-bold">Welcome to the Car Rental Service</h1>
-      <p className="text-center text-l font-bol">Find your perfect car for rent.</p>
+      <h1 className="pl-8 text-center text-3xl font-bold">Welcome to the Car Rental Service</h1>
+      <p className="text-center font-medium">Find your perfect car for rent.</p>
       </div>
       {/* Displaying the cars */}
       <div className="grid grid-cols-3 gap-4">

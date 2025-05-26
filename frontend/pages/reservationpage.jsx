@@ -250,14 +250,18 @@ export const ReservationPage = () => {
     return (
         <div className="p-5 max-w-2xl mx-auto">
             <Header />
-            <div className="mb-5">
+            <div className='flex flex-row items-center gap-20'>
+               <div className="mb-5">
                 <h1 className="text-2xl font-bold mb-2">{lastSelectedCar.name}</h1>
                 <p className="my-1">{lastSelectedCar.brand}</p>
                 <p className="my-1">{lastSelectedCar.type}</p>
                 <p className="my-1">${lastSelectedCar.pricePerDay} per day</p>
                 <p className="my-1">{lastSelectedCar.mileage} km</p>
+                 </div>
+                <div>
+               <img className="w-40 h-auto object-cover rounded" src={lastSelectedCar.Image} alt={lastSelectedCar.name} />
+                </div>
             </div>
-
             <form onSubmit={handleSubmit} className="border border-gray-300 p-5 rounded-lg">
                 <div className="mb-4">
                     <label className="block mb-2">Full Name:</label>

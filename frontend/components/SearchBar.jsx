@@ -7,6 +7,7 @@ export const SearchBar = ({onSearch,onSubmit,clearSuggestions})=>{
     const [type, setType] = useState("");
     const [suggestions, setSuggestions] = useState([]);
 
+    // so basically we are sending  on Search, onSubmit and clearSuggestions props to the parent component 
 
    // Debounced Search function
    const debouncedSearch = useCallback(
