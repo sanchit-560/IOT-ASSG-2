@@ -10,7 +10,7 @@ export const getAllCars = async(req,res)=>{
            { name: { $regex: search, $options: "i" } },
            { brand: { $regex: search, $options: "i" } },
            { type: { $regex: search, $options: "i" } },
-           { color: { $regex: search, $options: "i" } }
+           { color: { $regex: search, $options: "i" } },
         ],
       }),
     };
@@ -23,4 +23,19 @@ export const getAllCars = async(req,res)=>{
         res.status(500).json({message: err.message})
     }
 
+}
+
+export const getCarAvailability = async (req,res)=>{
+  try {
+    const {vin} = req.params;
+    const car = await Car.findOne({vin})
+    if(!car){
+      return  res.status(404).json({message:"Car does not exist"})
+    }
+    res.json({vin:car.vin,isAvailable:car.isAvailable})
+    
+  } catch (err) {
+    res.status(500).json({message:err.message})
+    
+  }
 }

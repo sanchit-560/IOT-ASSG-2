@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Card = ({ car }) => {
     const navigate = useNavigate();
-
+    // handle Rent function, navigates to BookingPage and also adds the current car object in Local storage
     const handleRentClick = (e) => {
         e.preventDefault();
         localStorage.setItem('lastSelectedCar', JSON.stringify(car));
@@ -23,11 +23,11 @@ export const Card = ({ car }) => {
             <p className="text-green-700 font-bold mb-1">Price: ${car.pricePerDay}</p>
             <p className="text-blue-700 mb-4">Mileage: {car.mileage} km</p>
             <p className="text-blue-700 mb-4">Available: {car.isAvailable ? "Yes" : "No"}</p>
+            {/* if car is available Rent now button else NOt available  */}
             {car.isAvailable ? (
                 <button 
                     onClick={handleRentClick}
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors w-full"
-                >
+                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors w-full">
                     Rent Now
                 </button>
             ) : (

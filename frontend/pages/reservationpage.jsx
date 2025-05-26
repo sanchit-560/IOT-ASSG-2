@@ -26,8 +26,7 @@ function validateForm(formData) {
     //valid date check
     if (!formData.startDate) {
         error.startDate = 'Start date is required';
-    } else {
-        
+    } else { 
         const today = new Date();
         today.setHours(0, 0, 0, 0); 
         const selected = new Date(formData.startDate);
@@ -76,9 +75,22 @@ export const ReservationPage = () => {
     
     // if there car object in local storage 
     if(!lastSelectedCar){
-        return <div className='text-center text-2xl font-bold'>Currently no car is selected, please return to the main menu and select a car.<br/>
+
+        return <div>
+             <div className='text-center text-2xl font-bold'>Currently no car is selected, please return to the main menu and select a car.<br/>
             Happy Rentals
-        </div>;
+                </div>;
+             <div className='flex justify-center'>
+                <button className='font-medium justify-between p-4 hover:bg-sky-400 rounded-xl m-2 cursor-pointer duration-300 hover:text-black'
+                    onClick={() => {
+                        localStorage.removeItem("reservationForm");
+                        localStorage.removeItem("lastSelectedCar");
+                        navigate("/");
+                    }}>
+                    Return to Homepage
+                </button>
+                </div>
+        </div>
     }
 
 
@@ -87,7 +99,7 @@ export const ReservationPage = () => {
         return (
             <div>
                 <h2 className='text-center text-2xl font-bold'>Reservation Successful!</h2>
-                <p className='text-center'>Your car has been reserved. You will .</p>
+                <p className='text-center'>Your car has been reserved.</p>
                 <div className='flex justify-center'>
                 <button className='font-medium justify-between p-4 hover:bg-sky-400 rounded-xl m-2 cursor-pointer duration-300 hover:text-black'
                     onClick={() => {
@@ -107,20 +119,21 @@ export const ReservationPage = () => {
             <div>
                 <h2 className='text-center text-2xl font-bold'>Reservation Unsuccessful!</h2>
                 <p className='text-center'>The car is no longer available for booking. This could be because:</p>
-                <ul>
+                <ul className='text-center'>
                     <li>• The car was just booked by another customer</li>
                     <li>• The car's availability status has changed</li>
                 </ul>
                 <p className='text-center'>Please select another car from our available inventory.</p>
-                <button 
+                <div className='flex justify-center'>
+                <button className='font-medium justify-between p-4 hover:bg-sky-400 rounded-xl m-2 cursor-pointer duration-300 hover:text-black'
                     onClick={() => {
                         localStorage.removeItem("reservationForm");
                         localStorage.removeItem("lastSelectedCar");
                         navigate("/");
-                    }}
-                >
+                    }}>
                     Return to Homepage
                 </button>
+                </div>
             </div>
         );
     }
@@ -163,6 +176,18 @@ export const ReservationPage = () => {
 
         setIsSubmitting(true);
         try {
+            
+            const availabilityOFCar = await api.get(`/cars/${lastSelectedCar.vin}/availability`);
+            if(!availabilityOFCar.data.isAvailable){
+                setOrderStatus("Fail")
+                const updatedCar = {...lastSelectedCar,isAvailable:false}
+                setLastSelectedCar(updatedCar)
+                localStorage.setItem('lastSelectedCar',JSON.stringify(updatedCar))
+                setIsSubmitting(false)
+                alert('The car is no longer available')
+                return
+            }
+
             const orderData = {
                 vin: lastSelectedCar.vin,
                 customerName: form.customerName,
@@ -310,15 +335,13 @@ export const ReservationPage = () => {
                     <button 
                         type="button" 
                         onClick={handleCancel}
-                        className="px-4 py-2 border border-gray-300 rounded bg-gray-50 hover:bg-gray-100"
-                    >
+                        className="px-4 py-2 border border-gray-300 rounded bg-gray-50 hover:bg-gray-100">
                         Cancel
                     </button>
                     <button 
                         type="submit" 
                         disabled={isSubmitting}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
-                    >
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
                         {isSubmitting ? 'Processing...' : 'Confirm Reservation'}
                     </button>
                 </div>
