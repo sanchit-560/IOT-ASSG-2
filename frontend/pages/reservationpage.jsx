@@ -76,7 +76,7 @@ export const ReservationPage = () => {
     // if there car object in local storage 
     if(!lastSelectedCar){
 
-        return <div>
+        return <div className='pt-40'>
              <div className='text-center text-2xl font-bold'>Currently no car is selected, please return to the main menu and select a car.<br/>
             Happy Rentals
                 </div>;
@@ -97,7 +97,7 @@ export const ReservationPage = () => {
      // check order status
     if(orderStatus === "Success"){
         return (
-            <div>
+            <div className='pt-40'>
                 <h2 className='text-center text-2xl font-bold'>Reservation Successful!</h2>
                 <p className='text-center'>Your car has been reserved.</p>
                 <div className='flex justify-center'>
@@ -116,7 +116,7 @@ export const ReservationPage = () => {
     // check order status
     if(orderStatus === "Fail"){
         return (
-            <div>
+            <div className='pt-40'>
                 <h2 className='text-center text-2xl font-bold'>Reservation Unsuccessful!</h2>
                 <p className='text-center'>The car is no longer available for booking. This could be because:</p>
                 <ul className='text-center'>
@@ -248,7 +248,7 @@ export const ReservationPage = () => {
     }
 
     return (
-        <div className="p-5 max-w-2xl mx-auto">
+        <div className="p-5 max-w-2xl mt-32 mx-auto">
             <Header />
             <div className='flex flex-row items-center gap-20'>
                <div className="mb-5">

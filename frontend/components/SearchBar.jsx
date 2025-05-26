@@ -35,7 +35,7 @@ export const SearchBar = ({onSearch,onSubmit,clearSuggestions})=>{
   };
     return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col items-center w-full my-8 space-y-4">
+      <div className="flex flex-col items-center w-full mt-32 space-y-4">
         <div className="flex flex-col sm:flex-row items-center gap-4">
           {/* Search input bar */}
           <div className="relative">

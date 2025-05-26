@@ -66,9 +66,9 @@ export const Homepage = () => {
           ))}
         </div>
       )}
-      <div className="container mx-auto my-8">
-      <h1 className="pl-8 text-center text-3xl font-bold">Welcome to the Car Rental Service</h1>
-      <p className="text-center font-medium">Find your perfect car for rent.</p>
+      <div className="container mx-auto my-8 mt-8">
+      <h1 className="pl-8 text-center text-lg text-gray-600 mt-2">Welcome to the Car Rental Service</h1>
+      <p className="pl-8 text-center font-medium">Find your perfect car for rent.</p>
       </div>
       {/* Displaying the cars */}
       <div className="grid grid-cols-3 gap-4">
